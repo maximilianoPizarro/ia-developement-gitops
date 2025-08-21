@@ -1,9 +1,0 @@
-apiVersion: helm.openshift.io/v1beta1
-kind: ProjectHelmChartRepository
-metadata:
-  name: librechat
-spec:
-  connectionConfig:
-    url: 'https://maximilianopizarro.github.io/librechat/'
-  description: LibreChat on OpenShift
-  name: LibreChat

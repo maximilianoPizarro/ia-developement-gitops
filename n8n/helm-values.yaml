@@ -185,7 +185,8 @@ n8n:
     type: ClusterIP
   serviceAccount:
     automount: true
-    create: true
+    create: false
+    name: 'default'
   serviceMonitor:
     enabled: false
     include:
