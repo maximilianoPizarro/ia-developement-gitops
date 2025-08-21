@@ -1,0 +1,351 @@
+n8n:
+  api:
+    enabled: true
+    path: api
+    swagger:
+      enabled: true
+  binaryData:
+    mode: default
+    s3:
+      bucketRegion: us-east-1
+  db:
+    logging:
+      enabled: false
+      maxQueryExecutionTime: 0
+      options: error
+    sqlite:
+      database: database.sqlite
+      poolSize: 0
+      vacuum: false
+    type: sqlite
+  defaultLocale: en
+  diagnostics:
+    backendConfig: '1zPn7YoGC3ZXE9zLeTKLuQCB4F6;https://telemetry.n8n.io'
+    enabled: false
+    frontendConfig: '1zPn9bgWPzlQc0p8Gj1uiK6DOTn;https://telemetry.n8n.io'
+    postHog:
+      apiHost: 'https://ph.n8n.io'
+      apiKey: phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo
+  externalPostgresql:
+    database: n8n
+    port: 5432
+    username: postgres
+  externalRedis:
+    port: 6379
+  gracefulShutdownTimeout: 30
+  image:
+    pullPolicy: IfNotPresent
+    repository: n8nio/n8n
+  ingress:
+    enabled: false
+    hosts:
+      - host: n8n.local
+        paths:
+          - path: /
+            pathType: Prefix
+  license:
+    autoNenew:
+      enabled: true
+      offsetInHours: 72
+    enabled: false
+    serverUrl: 'http://license.n8n.io/v1'
+    tenantId: 1
+  log:
+    file:
+      location: logs/n8n.log
+      maxcount: '100'
+      maxsize: 16
+    level: info
+    output:
+      - console
+  main:
+    count: 1
+    forceToUseStatefulset: false
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: http
+    pdb:
+      enabled: true
+      minAvailable: 1
+    persistence:
+      accessMode: ReadWriteOnce
+      annotations:
+        helm.sh/resource-policy: keep
+      enabled: false
+      mountPath: /home/node/.n8n
+      size: 8Gi
+    readinessProbe:
+      httpGet:
+        path: /healthz/readiness
+        port: http
+  minio:
+    buckets:
+      - name: n8n-bucket
+        policy: none
+        purge: false
+        versioning: false
+    consoleIngress:
+      enabled: false
+      hosts:
+        - minio-console.mydomain.com
+      path: /
+    deploymentUpdate:
+      type: Recreate
+    drivesPerNode: 1
+    enabled: false
+    ingress:
+      enabled: true
+      hosts:
+        - minio.mydomain.com
+      path: /
+    mode: standalone
+    persistence:
+      accessMode: ReadWriteOnce
+      enabled: true
+      size: 40Gi
+    policies:
+      - name: n8n-policy
+        statements:
+          - actions:
+              - 's3:AbortMultipartUpload'
+              - 's3:GetObject'
+              - 's3:DeleteObject'
+              - 's3:PutObject'
+              - 's3:ListMultipartUploadParts'
+            resources:
+              - 'arn:aws:s3:::n8n-bucket/*'
+          - actions:
+              - 's3:GetBucketLocation'
+              - 's3:ListBucket'
+              - 's3:ListBucketMultipartUploads'
+            resources:
+              - 'arn:aws:s3:::n8n-bucket'
+    pools: 1
+    replicas: 1
+    resources:
+      requests:
+        memory: 1Gi
+    statefulSetUpdate:
+      updateStrategy: Recreate
+    users:
+      - accessKey: n8n-user
+        policy: n8n-policy
+        secretKey: Change_Me
+  nodes:
+    builtin:
+      enabled: false
+    external:
+      allowAll: false
+      reinstallMissingPackages: false
+    initContainer:
+      image:
+        pullPolicy: IfNotPresent
+        repository: node
+        tag: 20-alpine
+  npmRegistry:
+    enabled: false
+    secretKey: npmrc
+  podSecurityContext:
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+  postgresql:
+    architecture: standalone
+    auth:
+      database: n8n
+    enabled: false
+    primary:
+      persistence:
+        enabled: true
+      service:
+        ports:
+          postgresql: 5432
+  redis:
+    architecture: standalone
+    enabled: false
+    master:
+      persistence:
+        enabled: false
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    privileged: false
+    readOnlyRootFilesystem: false
+    runAsGroup: 1000
+    runAsNonRoot: true
+    runAsUser: 1000
+  sentry:
+    enabled: false
+  service:
+    enabled: true
+    name: http
+    port: 5678
+    type: ClusterIP
+  serviceAccount:
+    automount: true
+    create: true
+  serviceMonitor:
+    enabled: false
+    include:
+      apiEndpoints: false
+      apiMethodLabel: false
+      apiPathLabel: false
+      apiStatusCodeLabel: false
+      cacheMetrics: false
+      credentialTypeLabel: false
+      defaultMetrics: true
+      messageEventBusMetrics: false
+      nodeTypeLabel: false
+      queueMetrics: false
+      workflowIdLabel: false
+    interval: 30s
+    labels:
+      release: prometheus
+    metricsPrefix: n8n_
+    timeout: 10s
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  taskRunners:
+    broker:
+      address: 127.0.0.1
+      port: 5679
+    external:
+      autoShutdownTimeout: 15
+      nodeOptions:
+        - '--max-semi-space-size=16'
+        - '--max-old-space-size=300'
+      port: 5680
+      resources:
+        limits:
+          cpu: 2000m
+          memory: 512Mi
+        requests:
+          cpu: 100m
+          memory: 32Mi
+    maxConcurrency: 5
+    mode: internal
+    taskHeartbeatInterval: 30
+    taskTimeout: 60
+  timezone: Europe/Berlin
+  versionNotifications:
+    enabled: false
+    endpoint: 'https://api.n8n.io/api/versions/'
+    infoUrl: 'https://docs.n8n.io/hosting/installation/updating/'
+  webhook:
+    allNodes: false
+    autoscaling:
+      enabled: false
+      maxReplicas: 10
+      metrics:
+        - resource:
+            name: cpu
+            target:
+              averageUtilization: 80
+              type: Utilization
+          type: Resource
+      minReplicas: 2
+    count: 2
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: http
+    mcp:
+      enabled: true
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: http
+      readinessProbe:
+        httpGet:
+          path: /healthz/readiness
+          port: http
+      startupProbe:
+        exec:
+          command:
+            - /bin/sh
+            - '-c'
+            - 'ps aux | grep ''[n]8n'''
+        failureThreshold: 30
+        initialDelaySeconds: 10
+        periodSeconds: 5
+    mode: regular
+    pdb:
+      enabled: true
+      minAvailable: 1
+    readinessProbe:
+      httpGet:
+        path: /healthz/readiness
+        port: http
+    startupProbe:
+      exec:
+        command:
+          - /bin/sh
+          - '-c'
+          - 'ps aux | grep ''[n]8n'''
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 5
+    waitMainNodeReady:
+      enabled: false
+      healthCheckPath: /healthz
+  worker:
+    allNodes: false
+    autoscaling:
+      enabled: false
+      maxReplicas: 10
+      metrics:
+        - resource:
+            name: memory
+            target:
+              averageUtilization: 80
+              type: Utilization
+          type: Resource
+        - resource:
+            name: cpu
+            target:
+              averageUtilization: 80
+              type: Utilization
+          type: Resource
+      minReplicas: 2
+    concurrency: 10
+    count: 2
+    forceToUseStatefulset: false
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: http
+    mode: regular
+    pdb:
+      enabled: true
+      minAvailable: 1
+    persistence:
+      accessMode: ReadWriteOnce
+      annotations:
+        helm.sh/resource-policy: keep
+      enabled: false
+      mountPath: /home/node/.n8n
+      size: 8Gi
+    readinessProbe:
+      httpGet:
+        path: /healthz/readiness
+        port: http
+    startupProbe:
+      exec:
+        command:
+          - /bin/sh
+          - '-c'
+          - 'ps aux | grep ''[n]8n'''
+      failureThreshold: 30
+      initialDelaySeconds: 10
+      periodSeconds: 5
+    waitMainNodeReady:
+      enabled: false
+      healthCheckPath: /healthz
+  workflowHistory:
+    enabled: true
+    pruneTime: 336

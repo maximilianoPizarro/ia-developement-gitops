@@ -1,0 +1,208 @@
+librechat:
+  global:
+    librechat:
+      existingSecretApiKey: OPENAI_API_KEY
+      existingSecretName: credentials-environment
+  image:
+    pullPolicy: IfNotPresent
+    registry: ghcr.io
+    repository: danny-avila/librechat
+    tag: 'v0.8.0-rc1'
+  imagePullSecrets: []
+  
+  route:
+    enabled: true  
+    host: librechat.openshiftapps.com
+  
+  ingress:
+    annotations: {}
+    className: ''
+    enabled: false
+    hosts:
+      - host: librechat.openshiftapps.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+  librechat:
+    configEnv:
+      OPENAI_API_KEY: IiI=
+      RAG_API_URL: aHR0cDovL2xpYnJlY2hhdC1saWJyZWNoYXQtcmFnLWFwaTo4MDAw
+      CREDS_IV: 118a16ffe26a8712d0adb5b3cf8229ca
+      CREDS_KEY: 99f12ba0ea72257aa78df8e99c9be801716a7e16fe77e7510a914112528aa05c
+      DEBUG_PLUGINS: 'true'
+      JWT_REFREcdSH_SECRET: 8a447c316c171f5df8e304c085187b6d10e4eeef5174137d4ad4d2cdd956f5e7
+      JWT_SECRET: 83096493d70e22561f84191c24f459d72e9b41f4c8657fe43aae8cb9b0fe1fa4
+      PLUGIN_MODELS: >-
+        gpt-4,gpt-4-turbo-preview,gpt-4-0125-preview,gpt-4-1106-preview,gpt-4-0613,gpt-3.5-turbo,gpt-3.5-turbo-0125,gpt-3.5-turbo-1106,gpt-3.5-turbo-0613,llama-3-1-8b-instruct
+    configYamlContent: |
+      version: 1.0.3
+      cache: true
+      # fileStrategy: "firebase"  # If using Firebase CDN
+      fileConfig:
+        endpoints:
+          assistants:
+            fileLimit: 5
+            fileSizeLimit: 10  # Maximum size for an individual file in MB
+            totalSizeLimit: 50  # Maximum total size for all files in a single request in MB
+            supportedMimeTypes:
+              - "image/.*"
+              - "application/pdf"
+          openAI:
+            disabled: true  # Disables file uploading to the OpenAI endpoint
+          default:
+            totalSizeLimit: 20
+          YourCustomEndpointName:
+            fileLimit: 2
+            fileSizeLimit: 5
+        serverFileSizeLimit: 100  # Global server file size limit in MB
+        avatarSizeLimit: 2  # Limit for user avatar image size in MB
+      rateLimits:
+        fileUploads:
+          ipMax: 100
+          ipWindowInMinutes: 60  # Rate limit window for file uploads per IP
+          userMax: 50
+          userWindowInMinutes: 60  # Rate limit window for file uploads per user
+      #registration:
+      #  socialLogins: ["google", "facebook", "github", "discord", "openid"]
+      #  allowedDomains:
+      #    - "*"
+      #    - ".apps.cluster-26wbn.26wbn.sandbox691.opentlc.com"
+      endpoints:
+        assistants:
+          disableBuilder: false # Disable Assistants Builder Interface by setting to `true`
+          pollIntervalMs: 750  # Polling interval for checking assistant updates
+          timeoutMs: 180000  # Timeout for assistant operations
+          # Should only be one or the other, either `supportedIds` or `excludedIds`
+          supportedIds: ["asst_supportedAssistantId1", "asst_supportedAssistantId2"]
+          # excludedIds: ["asst_excludedAssistantId"]
+        custom:
+          - name: "Ollama"
+            apiKey: "${OPENAI_API_KEY}"
+            baseURL: "http://librechat-ollama:11434/v1" # Adjust if Ollama is on a different host
+            models:
+              default: ["llama2"] # Example models, fetch from your Ollama instance
+              fetch: true
+            titleConvo: true
+            titleModel: "llama2"
+            summarize: false
+            summaryModel: "llama2"
+          - name: "Mistral"
+            apiKey: "eyJhbGciOiJSUzI1NiIsImtpZCI6IkZGWU5Sdnh4LU1LZndQa0Q3WmJMa3dCNXNieS13bE51MExxUmF0ZGNaQzQifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJsbG0iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiZGVmYXVsdC1uYW1lLW1pc3RyYWwtc2EiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoibWlzdHJhbC1zYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjM5MDkwZGUyLWMwMWEtNGI4My1iOGUzLThjYzkzNzhiNzY3NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpsbG06bWlzdHJhbC1zYSJ9.I7WjBFikRhCC4t21rouAYXXpPcuZ_CYcM_qpB3jsfFL_SKpKnhTPW0Zz7KLPTOl5c8vewoFQYqhpiPZJ5QWg9FwnzVjwoAy94MylnIaM0mpVfvYWW0Y-P2k491U5tG096fjWhB9BTGkWXyRTNKLCybzm62EbvMaXHXx6_WGV17QAzOPkbXzh8OKquGO7uxmW0jC2WhJgenOakS72lpkYN0Z-3oKDb1DmRujp2LSGeHtPk_lG4CcB1cumfcqHPZqgn1pFBLblD71lbRc_OSgynH3ZWhvQki5OLA3yU_578F6_aMeqm_jMFSBjE8v7ZYuT2ovrsImrq97o0GJRpoBvrUXBAv4gTPhfpPEqyQ79lyRh9irLG8PpjUerV-TG4A_Qa0HfRCLaaPWTjhf3rJV3dS64dXaJCYfW1ZEOJJYF5cEc7j-5Y0nwXcvqaxJJoMU5mL1ZxnpjSq5Xu7UDuRXQwb9qedLvUwVWpcx1m6pCtYnrR0UkcfiOWRUMz0BU-bK_U2KwLKecjR-h6FyfDzxjVcCn4-Qg51Fi0wkfJoGCIKHI2MDH39hJngv-LwVHPnUXbXiW5NeIIEmv0i_9ScYO46jMTmki2KN2WNTRTo-ThrKzuVFs2Z_mVEwBPSi-LxI7sucQi-dIaaAP1aJtTlWkB_8HpTfk-wgYzJQ7ahp15tA"
+            baseURL: "https://my-model.llm.svc.cluster.local/v1" # Adjust if Ollama is on a different host
+            models:
+              default: ["Mistral-7B-Instruct-v0.2"] # Example models, fetch from your Ollama instance
+              fetch: true
+            titleConvo: true
+            titleModel: "Mistral-7B-Instruct-v0.2"
+            summarize: false
+            summaryModel: "Mistral-7B-Instruct-v0.2"    
+    existingConfigYaml: ''
+    existingSecretName: credentials-environment
+    serviceAccountName: default
+    imageVolume:
+      accessModes: ReadWriteOnce
+      enabled: true
+      size: 10G
+  librechat-rag-api:
+    embeddingsProvider: openai
+    enabled: true
+  endpoints:
+    custom:
+      # OpenRouter.ai
+      - name: "Ollama"
+        apiKey: "${OPENAI_API_KEY}"
+        baseURL: "http://librechat-ollama:11434/v1" # Adjust if Ollama is on a different host
+        models:
+          default: ["llama2"] # Example models, fetch from your Ollama instance
+          fetch: true
+        titleConvo: true
+        titleModel: "llama2"
+        summarize: false
+        summaryModel: "llama2"
+  lifecycle: {}
+  meilisearch:
+    auth:
+      existingMasterKeySecret: credentials-environment
+    enabled: true
+    image:
+      tag: v1.7.3
+    persistence:
+      enabled: true
+      storageClass: 'gp3-csi'
+    serviceAccountName: default
+  postgresql:
+    auth:
+      database: librechat-vectordb
+      username: postgres
+      password: postgres 
+    enabled: true
+    image:
+      registry: ghcr.io
+      repository: bat-bs/bitnami-pgvector
+      tag: pg16
+  
+    primary:
+      initdb:
+        scripts:
+          create-librechat-db.sql: |
+            -- Ensure the database exists
+            CREATE DATABASE "librechat-vectordb" WITH OWNER postgres;
+  
+            -- Connect to the new database and create the pgvector extension
+            \c librechat-vectordb
+            CREATE EXTENSION IF NOT EXISTS vector;
+            
+            -- CREATE USER postgres WITH PASSWORD 'postgres';
+            -- GRANT ALL PRIVILEGES ON DATABASE "librechat-vectordb" TO postgres;
+  mongodb:
+    auth:
+      enabled: false
+    databases:
+      - LibreChat
+    enabled: true
+  
+  ollama:
+    enabled: true
+  
+  nameOverride: ''
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+  securityContext: {}
+  service:
+    annotations: {}
+    port: 3080
+    type: ClusterIP
+  tolerations: []
+  updateStrategy:
+    type: RollingUpdate
+  volumeMounts:
+    - name: librechat-data-volume
+      mountPath: /app/data
+    - name: librechat-uploads-volume
+      mountPath: /app/uploads
+    - name: librechat-logs-volume
+      mountPath: /app/logs
+    - name: librechat-api-logs-volume
+      mountPath: /app/api/logs
+  volumes:
+    - name: librechat-uploads-volume
+      persistentVolumeClaim: 
+        claimName: librechat-data
+    - name: librechat-data-volume
+      persistentVolumeClaim: 
+        claimName: librechat-rag-api-data 
+    - name: librechat-logs-volume
+      emptyDir: {}
+    - name: librechat-api-logs-volume
+      emptyDir: {}
