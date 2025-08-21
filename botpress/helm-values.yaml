@@ -1,0 +1,72 @@
+botpress:
+  affinity: {}
+  autoscaling:
+    enabled: false
+    maxReplicas: 100
+    minReplicas: 1
+    targetCPUUtilizationPercentage: 80
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    enabled: true
+    privileged: false
+    readOnlyRootFilesystem: false
+    runAsNonRoot: true
+    runAsUser: 1001
+    seLinuxOptions: null
+    seccompProfile:
+      type: RuntimeDefault
+  env:
+    BP_CONFIG_HTTPSERVER_HOST: 0.0.0.0
+    BP_MODULE_NLU_DUCKLINGURL: 'http://localhost:8000'
+    BP_PRODUCTION: true
+    EXTERNAL_URL: >-
+      https://botpress.apps.rosa.rt33z-cfo8j-ma7.v7uj.p3.openshiftapps.com
+  fullnameOverride: ''
+  image:
+    pullPolicy: IfNotPresent
+    repository: quay.io/maximilianopizarro/botpress-server-v12
+    tag: latest
+  imagePullSecrets: []
+  ingress:
+    annotations: {}
+    className: ''
+    enabled: false
+    hosts:
+      - host: >-
+          botpress.apps.rosa.rt33z-cfo8j-ma7.v7uj.p3.openshiftapps.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+  nameOverride: ''
+  nodeSelector: {}
+  persistence:
+    accessModes:
+      - ReadWriteOnce
+    annotations: {}
+    customStorageClass: {}
+    enabled: true
+    existingClaim: ''
+    hostPath: ''
+    size: 1Gi
+    storageClass: ''
+  podAnnotations: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources: {}
+  route:
+    enabled: true
+    host: botpress.apps.rosa.rt33z-cfo8j-ma7.v7uj.p3.openshiftapps.com
+  securityContext: {}
+  service:
+    port: 3000
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: ''
+  tolerations: []
+  

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: librechat
+  name: ia-development
   namespace: openshift-gitops
 spec:
   generators:
@@ -13,6 +13,9 @@ spec:
           - name: n8n
             namespace: n8n
             path: n8n
+          - name: botpress
+            namespace: botpress
+            path: botpress
   template:
     metadata:
       name: '{{name}}'

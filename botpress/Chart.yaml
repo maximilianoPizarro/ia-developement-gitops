@@ -1,0 +1,11 @@
+apiVersion: v2
+name: botpress
+description: "A Botpress Community Helm chart for OpenShift"
+type: application
+
+version: 0.1.0
+appVersion: "botpress-server-v12"
+dependencies:
+- name: botpress
+  version: "0.1.1"
+  repository: "https://charts.openshift.io"
