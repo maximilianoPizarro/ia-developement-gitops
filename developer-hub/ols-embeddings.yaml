@@ -17,6 +17,8 @@ kind: Job
 metadata:
   name: ols-embedding-model-populator
   namespace: developer-hub # Make sure this is your RHDH namespace
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
     spec:

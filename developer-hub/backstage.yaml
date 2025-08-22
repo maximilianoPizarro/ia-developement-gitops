@@ -2,6 +2,8 @@ apiVersion: rhdh.redhat.com/v1alpha3
 kind: Backstage
 metadata:
   name: developer-hub
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   application:
     appConfig:
