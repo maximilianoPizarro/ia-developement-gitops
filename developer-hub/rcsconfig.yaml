@@ -42,3 +42,5 @@ data:
     user_data_collector_config:
       data_storage: /opt/ols-embeddings
       user_agent: OpenShiftLightspeed
+    dev_config:
+      disable_tls: true
