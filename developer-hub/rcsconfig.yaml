@@ -22,8 +22,8 @@ data:
         type: memory
         memory:
           max_entries: 1000
-      default_model: meta-llama/llama-3-8b-instruct
-      default_provider: IBMwatsonx
+      default_model: llama2
+      default_provider: ollama
       logging_config:
         app_log_level: INFO
         lib_log_level: INFO
@@ -40,15 +40,3 @@ data:
         feedback_storage: /opt/ols-embeddings/feedback
         transcripts_disabled: false
         transcripts_storage: /opt/ols-embeddings/transcripts
-    user_data_collector_config:
-      data_storage: /opt/ols-embeddings
-      user_agent: OpenShiftLightspeed
-    dev_config:
-      #embed_model_path: "/opt/ols-embeddings/all-mpnet-base-v2"
-      enable_dev_ui: false
-      disable_auth: true
-      disable_tls: true
-      enable_system_prompt_override: true
-      # llm_params:
-      #   temperature_override: 0
-      # k8s_auth_token: optional_token_when_no_available_kube_config
