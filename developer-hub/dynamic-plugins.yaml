@@ -36,9 +36,3 @@ data:
         disabled: false
       - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-github-dynamic
         disabled: false
-      - disabled: false
-        package: ./dynamic-plugins/dist/backstage-plugin-kubernetes
-      - disabled: false
-        package: ./dynamic-plugins/dist/backstage-plugin-kubernetes-backend-dynamic
-      - disabled: false
-        package: ./dynamic-plugins/dist/backstage-community-plugin-scaffolder-backend-module-kubernetes-dynamic
