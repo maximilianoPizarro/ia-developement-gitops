@@ -91,10 +91,8 @@ spec:
 
 ## Operators
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="900"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
 </div>
 
 ### Automated Management with OpenShift Operators
@@ -150,7 +148,65 @@ spec:
           - CreateNamespace=true
           - PruneLast=true
 ```
-Example instance Red Hat Build of Keycloak and Red Hat DevSpaces
+### Example instance Red Hat Build of Keycloak and Red Hat Developer Hub with GitHub OAuth provider
+
+> **Recommendation:**  
+> Before proceeding with the instantiation steps, it is highly recommended to **fork this repository** into your own GitHub account. This allows you to customize configurations, manage your own deployment history, and safely update values (such as secrets and hostnames) according to
+
+## Configuring OAuth for Developer Hub
+
+To enable GitHub OAuth authentication in Red Hat Developer Hub, you must first configure an OAuth application in GitHub and set the credentials in a Kubernetes secret before instantiating Developer Hub.
+
+### Steps to Configure GitHub OAuth
+
+1. **Create a GitHub OAuth App**  
+   - Go to your GitHub account settings → Developer settings → OAuth Apps.
+   - Click "New OAuth App".
+   - Set the application name and homepage URL.
+   - For "Authorization callback URL", use:  
+     `https://<your-developer-hub-route>/api/auth/github/callback`
+   - After creation, note the **Client ID** and **Client Secret**.
+
+2. **Create the Kubernetes Secret**
+
+Below is an example of the `secrets-rhdh.yaml` file required for Developer Hub.  
+**It is recommended to update these values directly from the OpenShift Console UI for better security and usability, rather than using `oc` commands.**
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secrets-rhdh
+  namespace: developer-hub
+type: Opaque
+data:
+  OLLAMA_TOKEN: c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSURFb2EyYmlwZnNhelRyeGxyR1NrMTBvYUE1cFRUN0EwbFBab3VwaTV6UVc=
+  KEYCLOAK_CLIENT_ID: YmFja3N0YWdl
+  KEYCLOAK_REALM: YmFja3N0YWdl
+...
+```
+
+<div align="left">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="900"/>
+</div>
+
+**Important:**  
+- The secret must be created in the `developer-hub` namespace.
+- You should update the values (especially tokens, client IDs, secrets, and URLs) to match your environment and credentials.
+- Use the OpenShift Console UI to edit and manage secret values securely.
+
+
+3. **Set the Hostname for Keycloak Integration**  
+   - Update the `hostname` field in your `keycloak.yaml` to point to the Red Hat Build of Keycloak route.
+   - Example:
+     ```
+     spec:
+       hostname: <your-keycloak-route>
+     ```
+   - This ensures Developer Hub can authenticate users via Keycloak.
+
+**Note:**  
+Both the GitHub OAuth secret and the correct Keycloak hostname are required prerequisites for a successful Developer Hub deployment.
 
 `applicationset-instance.yaml`
 
@@ -194,14 +250,18 @@ spec:
           - PruneLast=true
 ```
 
+<div align="left">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
+</div>
+
 
 ---
 
 ## n8n
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/n8n.png" width="900"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops2.png" width="900"/>
 </div>
 
 ### n8n: A Powerful Workflow Automation Tool
@@ -217,6 +277,9 @@ For full control over your automation environment, n8n can be self-hosted and sc
 
 Managed via GitOps, the setup provides version control and automated rollbacks. Security is also a priority, with support for environment variables, encrypted credentials, and role-based access control. Real-time monitoring and logging ensure transparency and traceability for all your automated processes.
 
+<div align="left">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops2.png" width="900"/>
+</div>
 
 
 `applicationset.yaml`
@@ -264,7 +327,7 @@ spec:
 
 ## LibreChat
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/librechat.png" width="900"/>
 </div>
 
@@ -281,7 +344,7 @@ For high availability and seamless management, this deployment leverages OpenShi
 
 The deployment process includes specific steps for database initialization and synchronization. After the databases are running, a sync **prune** + **dry run** + **force** and **refresh** operation in ArgoCD is required to start the application for first time. Guides and snapshots are provided to assist with this setup, empowering teams to maintain full control over their data and infrastructure.
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops-sync.png" width="600"/>
 </div>
 
@@ -329,7 +392,7 @@ spec:
 
 ## Botpress
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/botpress.png" width="900"/>
 </div>
 
@@ -388,3 +451,5 @@ spec:
 ---
 For more details on each component, refer to their respective vendor documentation.
 Build Here Go Anywhere.
+
+
