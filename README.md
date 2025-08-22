@@ -249,10 +249,18 @@ spec:
           - CreateNamespace=true
           - PruneLast=true
 ```
+### Red Hat Build of Keycloak 26.0
 
 <div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
+</div>
+
+### Red Hat Developer Hub 1.7
+
+<div align="left">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/developer-hub.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/developer-hub2.png" width="900"/>
 </div>
 
 
