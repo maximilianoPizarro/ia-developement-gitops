@@ -98,7 +98,8 @@ rules:
   - apiGroups:
       - k8s.keycloak.org
     resources:
-      - keycloakrealmimports 
+      - keycloakrealmimports
+      - keycloaks 
     verbs:
       - create
       - delete
