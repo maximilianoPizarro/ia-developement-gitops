@@ -12,8 +12,7 @@
 </p>
 
 <div align="center">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops.png" width="600"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops2.png" width="600"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops.png" width="900"/>
 </div>
 
 This repository provides the setup for deploying the following components on OpenShift using GitOps practices:
@@ -40,6 +39,8 @@ These files are used by OpenShift GitOps to automate the creation and management
 You must have cluster-admin privileges to apply these files, as they may create resources at the cluster scope.
 
 Example install all components.
+
+`applicationset.yaml`
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -97,10 +98,12 @@ In this repository, operators such as Red Hat Build of Keycloak, Red Hat Develop
 Using operators ensures that applications are deployed in a consistent, scalable, and secure manner, reducing manual intervention and operational overhead.
 
 <div align="center">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="600"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="600"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="600"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
 </div>
+
+`applicationset.yaml`
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -139,6 +142,8 @@ spec:
           - PruneLast=true
 ```
 Example instance Red Hat Build of Keycloak and Red Hat DevSpaces
+
+`applicationset-instance.yaml`
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -185,6 +190,12 @@ spec:
 
 ## n8n
 
+<div align="center">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/n8n.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops2.png" width="900"/>
+</div>
+
+
 **n8n** is an extendable workflow automation tool that enables users to connect various services and automate tasks with minimal effort.  
 It supports a wide range of integrations, allowing you to orchestrate data flows between APIs, databases, and other platforms.  
 n8n is designed for flexibility, enabling both simple automations and complex workflows with conditional logic, loops, and error handling.  
@@ -206,9 +217,9 @@ n8n is a key component for modern automation strategies in cloud-native environm
 It empowers teams to innovate faster by reducing manual work and errors.  
 The deployment is accompanied by visual guides and snapshots for easy onboarding.
 
-<div align="center">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/n8n.png" width="600"/>
-</div>
+
+`applicationset.yaml`
+
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -252,6 +263,10 @@ spec:
 
 ## LibreChat
 
+<div align="center">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/librechat.png" width="900"/>
+</div>
+
 **LibreChat** is an open-source chat platform designed for secure, scalable, and customizable messaging experiences.  
 It supports real-time communication, group chats, and integrations with external services.  
 LibreChat is built with privacy in mind, offering end-to-end encryption and robust access controls.  
@@ -273,9 +288,8 @@ Snapshots and guides are provided to assist with setup and troubleshooting.
 LibreChat empowers teams to communicate efficiently while maintaining control over data and infrastructure.  
 Its open-source nature encourages community contributions and rapid innovation.
 
-<div align="center">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/librechat.png" width="600"/>
-</div>
+
+`applicationset.yaml`
 
 ```
 apiVersion: argoproj.io/v1alpha1
@@ -319,6 +333,10 @@ spec:
 
 ## Botpress
 
+<div align="center">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/botpress.png" width="900"/>
+</div>
+
 **Botpress** is a powerful open-source platform for building, deploying, and managing conversational AI applications.  
 It provides a visual flow editor for designing chatbots and virtual assistants with complex logic and integrations.  
 Botpress supports natural language understanding, multi-channel deployment, and analytics for conversation tracking.  
@@ -340,10 +358,8 @@ Its open-source nature allows for rapid innovation and community-driven enhancem
 Botpress empowers teams to deliver personalized, efficient, and scalable conversational experiences.  
 Visual guides and snapshots are included to assist with deployment and configuration.
 
-<div align="center">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/botpress-overview.png" width="600"/>
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/botpress.png" width="600"/>
-</div>
+
+`applicationset.yaml`
 
 ```
 apiVersion: argoproj.io/v1alpha1
