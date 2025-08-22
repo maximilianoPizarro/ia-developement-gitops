@@ -8,4 +8,4 @@ resources:
   - keycloak.yaml
   - keycloak-backstage-realm.yaml
 
-namespace: rhbk
+namespace: rhbk-operator

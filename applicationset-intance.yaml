@@ -8,7 +8,7 @@ spec:
     - list:
         elements:
           - name: rhbk
-            namespace: rhbk
+            namespace: rhbk-operator
             path: rhbk
           - name: developer-hub
             namespace: developer-hub

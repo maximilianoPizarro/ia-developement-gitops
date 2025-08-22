@@ -19,7 +19,7 @@ spec:
   #http:
   #  tlsSecret: rhbk-tls-secret
   hostname:
-    hostname: rhbk.apps.rosa.m5cq8-ma8k4-7s6.ak3p.p3.openshiftapps.com
+    hostname: rhbk.apps.rosa.icxos-y3ntg-xie.rrcb.p3.openshiftapps.com
   proxy:
     headers: xforwarded # double check your reverse proxy sets and overwrites the X-Forwarded-* headers
   additionalOptions:
