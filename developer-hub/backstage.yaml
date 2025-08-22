@@ -76,6 +76,3 @@ spec:
               - name: ols-embeddings-volume
                 persistentVolumeClaim:
                   claimName: ols-embeddings
-              - configMap:
-                  name: app-config-rhdh
-                name: app-config-rhdh
