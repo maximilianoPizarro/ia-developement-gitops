@@ -279,8 +279,11 @@ LibreChat is also highly extensible, allowing for custom plugins and seamless in
 ### Scalable and Secure Deployment
 For high availability and seamless management, this deployment leverages OpenShift and is managed via GitOps. This ensures consistent deployments and easy updates. Security features like audit logs, role-based permissions, and encrypted storage provide peace of mind.
 
-The deployment process includes specific steps for database initialization and synchronization. After the databases are running, a **sync** + **prune** + **dry run** + force operation in ArgoCD is required to start the application. Guides and snapshots are provided to assist with this setup, empowering teams to maintain full control over their data and infrastructure.
+The deployment process includes specific steps for database initialization and synchronization. After the databases are running, a sync **prune** + **dry run** + **force** and **refresh** operation in ArgoCD is required to start the application for first time. Guides and snapshots are provided to assist with this setup, empowering teams to maintain full control over their data and infrastructure.
 
+<div align="center">
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops-sync.png" width="600"/>
+</div>
 
 `applicationset.yaml`
 

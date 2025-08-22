@@ -76,7 +76,6 @@ spec:
               - name: ols-embeddings-volume
                 persistentVolumeClaim:
                   claimName: ols-embeddings
-              # Ensure app-config-rhdh is also defined here if not already handled by the Backstage Operator
-              # - configMap:
-              #     name: app-config-rhdh
-              #   name: app-config-rhdh
+              - configMap:
+                  name: app-config-rhdh
+                name: app-config-rhdh
