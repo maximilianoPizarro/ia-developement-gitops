@@ -16,6 +16,9 @@ spec:
           - name: botpress
             namespace: botpress
             path: botpress
+          - name: operators
+            namespace: openshift-gitops
+            path: operators
   template:
     metadata:
       name: '{{name}}'

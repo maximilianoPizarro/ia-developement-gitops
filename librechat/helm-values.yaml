@@ -107,19 +107,7 @@ librechat:
   librechat-rag-api:
     embeddingsProvider: openai
     enabled: true
-  endpoints:
-    custom:
-      # OpenRouter.ai
-      - name: "Ollama"
-        apiKey: "${OPENAI_API_KEY}"
-        baseURL: "http://librechat-ollama:11434/v1" # Adjust if Ollama is on a different host
-        models:
-          default: ["llama2"] # Example models, fetch from your Ollama instance
-          fetch: true
-        titleConvo: true
-        titleModel: "llama2"
-        summarize: false
-        summaryModel: "llama2"
+  endpoints: {}
   lifecycle: {}
   meilisearch:
     auth:
