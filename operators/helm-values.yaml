@@ -40,12 +40,12 @@ subscriptions:
 rhdh:
   namespace: rhdh-operator
   channel: fast
-  startingCSV: rhdh-operator.v1.6.3
+  startingCSV: rhdh-operator.v1.7.0
   enabled: true
 rhbk:
   namespace: rhbk-operator
   channel: stable-v26.2
-  startingCSV: rhbk-operator.v26.2.5-opr.1
+  startingCSV: rhbk-operator.v26.2.7-opr.1
   enabled: true
 gitlab:
   namespace: gitlab-system
