@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - rolebinding.yaml
   - ols-embeddings.yaml
-  - secret-secrets-rhdh.yaml
+#  - secret-secrets-rhdh.yaml
   - backstage.yaml
   - app-config.yaml
   - dynamic-plugins.yaml

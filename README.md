@@ -4,11 +4,10 @@
 <img src="https://img.shields.io/badge/redhat-CC0000?style=for-the-badge&logo=redhat&logoColor=white" alt="Redhat">
 <img src="https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white" alt="kubernetes">
 <img src="https://img.shields.io/badge/helm-0db7ed?style=for-the-badge&logo=helm&logoColor=white" alt="Helm">
-<img src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="shell">
-<a href="https://www.linkedin.com/in/maximiliano-gregorio-pizarro-consultor-it"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" /></a>
-<a href="https://artifacthub.io/packages/search?repo=n8n"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/n8n" alt="n8n" /></a>
+<a href="https://artifacthub.io/packages/search?org=community-charts"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/n8n" alt="n8n" /></a>
 <a href="https://artifacthub.io/packages/search?repo=librechat-openshift"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/librechat" alt="Artifact Hub" /></a>
 <a href="https://artifacthub.io/packages/search?repo=botpress"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/botpress" alt="Artifact Hub" /></a>
+<a href="https://www.linkedin.com/in/maximiliano-gregorio-pizarro-consultor-it"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" /></a>
 </p>
 
 <div align="center">
@@ -17,7 +16,7 @@
 
 This repository provides the setup for deploying the following components on OpenShift using GitOps practices:
 
-- **Operators**: Red Hat Build of Keycloak, Red Hat Developer Hub, Red Hat Dev Spaces, path-operator, Red Hat 3scale and Red Hat apicast
+- **Operators**: Red Hat Build of Keycloak, Red Hat Developer Hub, Red Hat Dev Spaces, path-operator, Red Hat 3scale and Red Hat Apicast
 - **n8n**
 - **LibreChat**
 - **Botpress**
@@ -36,9 +35,9 @@ This repository provides the setup for deploying the following components on Ope
 
 `applicationset.yaml` and `applicationset-instance.yaml` define the GitOps deployment logic for the components listed above.  
 These files are used by OpenShift GitOps to automate the creation and management of ArgoCD Applications.  
-You must have cluster-admin privileges to apply these files, as they may create resources at the cluster scope.
+You must have **cluster-admin** privileges to apply these files, as they may create resources at the cluster scope.
 
-Example install all components.
+Example install **all** components.
 
 `applicationset.yaml`
 
@@ -92,16 +91,26 @@ spec:
 
 ## Operators
 
-Operators are essential for automating the management of complex applications on OpenShift.  
-They encapsulate operational knowledge and best practices, enabling seamless installation, upgrades, and maintenance of services.  
-In this repository, operators such as Red Hat Build of Keycloak, Red Hat Developer Hub, Red Hat Dev Spaces, path-operator, Red Hat 3scale and Red Hat apicast are used to provide authentication, developer tooling, API management, and routing capabilities.  
-Using operators ensures that applications are deployed in a consistent, scalable, and secure manner, reducing manual intervention and operational overhead.
-
 <div align="center">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="900"/>
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
 </div>
+
+### Automated Management with OpenShift Operators
+Operators are a key component for automating the management of complex applications on OpenShift. They encapsulate the operational knowledge needed to install, upgrade, and maintain services seamlessly, which significantly reduces manual intervention and operational overhead.
+
+In this repository, several operators are used to provide essential functionalities:
+
+- Red Hat Build of Keycloak: For robust authentication.
+
+- Red Hat Developer Hub and Red Hat Dev Spaces: For developer tooling.
+
+- Red Hat 3scale and Red Hat Apicast: For API management.
+
+- Path-operator: For intelligent routing.
+
+By leveraging these operators, we ensure that all applications are deployed in a consistent, scalable, and secure manner.
 
 `applicationset.yaml`
 
@@ -109,7 +118,7 @@ Using operators ensures that applications are deployed in a consistent, scalable
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ia-development
+  name: ia-development-operators
   namespace: openshift-gitops
 spec:
   generators:
@@ -149,7 +158,7 @@ Example instance Red Hat Build of Keycloak and Red Hat DevSpaces
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ia-development-instance
+  name: ia-development-instance-operators
   namespace: openshift-gitops
 spec:
   generators:
@@ -195,27 +204,19 @@ spec:
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/gitops2.png" width="900"/>
 </div>
 
+### n8n: A Powerful Workflow Automation Tool
+**n8n** is an extendable and flexible workflow automation tool that helps you connect various services and automate tasks with minimal effort. It features a user-friendly visual editor that makes it accessible for both technical and non-technical users to build everything from simple automations to complex workflows with conditional logic, loops, and error handling.
 
-**n8n** is an extendable workflow automation tool that enables users to connect various services and automate tasks with minimal effort.  
-It supports a wide range of integrations, allowing you to orchestrate data flows between APIs, databases, and other platforms.  
-n8n is designed for flexibility, enabling both simple automations and complex workflows with conditional logic, loops, and error handling.  
-It features a visual editor for building workflows, making it accessible for both technical and non-technical users.  
-With n8n, you can automate repetitive tasks, synchronize data between systems, and trigger actions based on events.  
-It supports custom scripting and can be self-hosted for full control over your automation environment.  
-n8n is ideal for DevOps, data engineering, and business process automation, providing transparency and traceability for all automated processes.  
-Its open-source nature allows for community-driven enhancements and integrations.  
-Security is a priority, with support for environment variables, encrypted credentials, and role-based access control.  
-n8n can be scaled horizontally to handle large volumes of workflows and tasks.  
-It integrates seamlessly with OpenShift, leveraging container orchestration for reliability and scalability.  
-The deployment in this repository ensures n8n is managed via GitOps, enabling version control and automated rollbacks.  
-n8n's modular architecture allows for easy extension with custom nodes and plugins.  
-It supports real-time monitoring and logging for workflow execution.  
-The platform is suitable for automating notifications, data transformations, and third-party integrations.  
-n8n can be used to build chatbots, automate CI/CD pipelines, and synchronize cloud resources.  
-Its intuitive interface reduces the learning curve for new users.  
-n8n is a key component for modern automation strategies in cloud-native environments.  
-It empowers teams to innovate faster by reducing manual work and errors.  
-The deployment is accompanied by visual guides and snapshots for easy onboarding.
+### Key Features and Use Cases
+With n8n, you can orchestrate data flows between hundreds of APIs, databases, and other platforms. It's perfect for automating repetitive tasks, synchronizing data between systems, and triggering actions based on specific events. Its versatility makes it a valuable asset for a wide range of use cases, including DevOps, data engineering, and general business process automation.
+
+As an open-source platform, n8n supports custom scripting, custom nodes, and community-driven enhancements, empowering teams to innovate faster by reducing manual work and errors.
+
+### Scalability and Secure Deployment
+For full control over your automation environment, n8n can be self-hosted and scaled horizontally to handle large volumes of workflows. This deployment integrates seamlessly with OpenShift for container orchestration, ensuring reliability and scalability.
+
+Managed via GitOps, the setup provides version control and automated rollbacks. Security is also a priority, with support for environment variables, encrypted credentials, and role-based access control. Real-time monitoring and logging ensure transparency and traceability for all your automated processes.
+
 
 
 `applicationset.yaml`
@@ -225,7 +226,7 @@ The deployment is accompanied by visual guides and snapshots for easy onboarding
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ia-development
+  name: ia-development-n8n
   namespace: openshift-gitops
 spec:
   generators:
@@ -267,26 +268,18 @@ spec:
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/librechat.png" width="900"/>
 </div>
 
-**LibreChat** is an open-source chat platform designed for secure, scalable, and customizable messaging experiences.  
-It supports real-time communication, group chats, and integrations with external services.  
-LibreChat is built with privacy in mind, offering end-to-end encryption and robust access controls.  
-The platform is highly extensible, allowing for custom plugins and integrations with AI services.  
-LibreChat can be used for team collaboration, customer support, and community engagement.  
-It features a modern user interface, supporting multimedia messages, file sharing, and notifications.  
-The deployment leverages OpenShift for high availability and scalability.  
-LibreChat integrates with authentication providers and databases for seamless user management.  
-It supports webhooks and API integrations for automation and third-party connectivity.  
-The platform is suitable for both internal and external communication needs.  
-LibreChat is managed via GitOps in this repository, ensuring consistent deployments and easy updates.  
-Security features include audit logs, role-based permissions, and encrypted storage.  
-The application can be customized to match organizational branding and workflows.  
-LibreChat supports mobile and desktop clients for broad accessibility.  
-It is ideal for organizations seeking a self-hosted, privacy-focused chat solution.  
-The deployment process includes database initialization and synchronization steps.  
-After the databases are running, you must finish the synchronization and perform a **sync prune + force** operation in ArgoCD to start the application.  
-Snapshots and guides are provided to assist with setup and troubleshooting.  
-LibreChat empowers teams to communicate efficiently while maintaining control over data and infrastructure.  
-Its open-source nature encourages community contributions and rapid innovation.
+### LibreChat: A Secure, Open-Source Chat Platform
+LibreChat is a robust, open-source chat platform built for secure, scalable, and customizable messaging. Designed with privacy in mind, it offers end-to-end encryption and strong access controls, making it an ideal choice for organizations seeking a self-hosted communication solution.
+
+### Core Features and Flexibility
+The platform supports a wide range of features, including real-time communication, group chats, and multimedia sharing. Its modern user interface makes it easy for teams to collaborate, share files, and receive notifications across both web and mobile clients.
+
+LibreChat is also highly extensible, allowing for custom plugins and seamless integration with AI services and external APIs via webhooks. This flexibility makes it suitable for diverse use cases, from team collaboration and customer support to community engagement. The platform can be customized with organizational branding and workflows to fit your specific needs.
+
+### Scalable and Secure Deployment
+For high availability and seamless management, this deployment leverages OpenShift and is managed via GitOps. This ensures consistent deployments and easy updates. Security features like audit logs, role-based permissions, and encrypted storage provide peace of mind.
+
+The deployment process includes specific steps for database initialization and synchronization. After the databases are running, a **sync** + **prune** + **dry run** + force operation in ArgoCD is required to start the application. Guides and snapshots are provided to assist with this setup, empowering teams to maintain full control over their data and infrastructure.
 
 
 `applicationset.yaml`
@@ -295,7 +288,7 @@ Its open-source nature encourages community contributions and rapid innovation.
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ia-development
+  name: ia-development-librechat
   namespace: openshift-gitops
 spec:
   generators:
@@ -337,27 +330,18 @@ spec:
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/botpress.png" width="900"/>
 </div>
 
-**Botpress** is a powerful open-source platform for building, deploying, and managing conversational AI applications.  
-It provides a visual flow editor for designing chatbots and virtual assistants with complex logic and integrations.  
-Botpress supports natural language understanding, multi-channel deployment, and analytics for conversation tracking.  
-The platform is modular, allowing for custom extensions and integrations with external APIs and databases.  
-Botpress is suitable for customer support, lead generation, and internal automation use cases.  
-It features built-in tools for intent recognition, entity extraction, and dialogue management.  
-Botpress can be deployed on-premises or in the cloud, ensuring data privacy and compliance.  
-The platform integrates with messaging channels such as web chat, Slack, and Microsoft Teams.  
-Botpress supports version control and collaborative development workflows.  
-It offers real-time monitoring and debugging tools for chatbot performance.  
-The deployment in this repository leverages OpenShift for scalability and reliability.  
-Botpress is managed via GitOps, enabling automated updates and rollbacks.  
-Security features include authentication, authorization, and encrypted storage.  
-Botpress can be extended with custom modules for advanced functionality.  
-It supports multilingual bots and rich media interactions.  
-The platform is ideal for organizations looking to automate interactions and improve user engagement.  
-Botpress provides detailed analytics and reporting for continuous improvement.  
-Its open-source nature allows for rapid innovation and community-driven enhancements.  
-Botpress empowers teams to deliver personalized, efficient, and scalable conversational experiences.  
-Visual guides and snapshots are included to assist with deployment and configuration.
+### Botpress: A Powerful Conversational AI Platform
+Botpress is a robust, open-source platform designed to help teams build, deploy, and manage conversational AI applications. It provides a visual flow editor that simplifies the creation of chatbots and virtual assistants, even with complex logic and integrations.
 
+### Core Features and Flexibility
+The platform features built-in tools for natural language understanding (NLU), intent recognition, and dialogue management, allowing for powerful and dynamic conversations. Botpress supports multi-channel deployment, integrating with popular messaging platforms like web chat, Slack, and Microsoft Teams.
+
+Its modular architecture allows for custom extensions and integrations with external APIs and databases, ensuring it can adapt to any use case, from customer support and lead generation to internal automation. The platform also supports multilingual bots and rich media interactions, empowering teams to deliver personalized and engaging user experiences.
+
+### Scalability and Secure Deployment
+Designed for scalability and reliability, Botpress can be deployed on-premises or in the cloud. This particular repository leverages OpenShift for automated, scalable deployments managed via GitOps, enabling automated updates and rollbacks. With features like authentication, authorization, and encrypted storage, Botpress ensures data privacy and security.
+
+For continuous improvement, the platform offers real-time monitoring, debugging tools, and detailed analytics for tracking chatbot performance and conversations.
 
 `applicationset.yaml`
 
@@ -365,7 +349,7 @@ Visual guides and snapshots are included to assist with deployment and configura
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ia-development
+  name: ia-development-botpress
   namespace: openshift-gitops
 spec:
   generators:
