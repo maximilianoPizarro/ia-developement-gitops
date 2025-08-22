@@ -12,7 +12,7 @@ data:
   rcsconfig.yaml: |
     llm_providers:
       - name: ollama
-        type: ollama
+        type: openai
         url: http://librechat-ollama.librechat.svc.cluster.local:11434/v1  # Por lo general, la URL predeterminada para Ollama
         models:
         - name: llama2  # Cambia esto por el nombre de tu modelo Ollama local (ej. 'llama2', 'mistral', 'codellama')
