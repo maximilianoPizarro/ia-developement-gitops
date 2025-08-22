@@ -21,6 +21,7 @@ roleRef:
   name: argocd-scc-manager # Must match the ClusterRole name defined above
   apiGroup: rbac.authorization.k8s.io
 ---
+{{- if eq .Values.gitlab.enabled true }}
 apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
@@ -57,3 +58,4 @@ volumes:
 seccompProfiles:
 - runtime/default # Allow the 'RuntimeDefault' seccomp profile
 - unconfined      # Allow 'Unconfined' as a fallback/option
+{{- end }}
