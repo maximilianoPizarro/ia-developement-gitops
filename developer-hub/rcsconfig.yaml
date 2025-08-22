@@ -1,0 +1,54 @@
+# rcsconfig.yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: rcsconfig
+  namespace: developer-hub
+  labels:
+    rhdh.redhat.com/ext-config-sync: 'true'
+  annotations:
+    rhdh.redhat.com/backstage-name: developer-hub
+data:
+  rcsconfig.yaml: |
+    llm_providers:
+      - name: ollama
+        type: ollama
+        url: http://librechat-ollama.librechat.svc.cluster.local:11434/v1  # Por lo general, la URL predeterminada para Ollama
+        models:
+        - name: llama2  # Cambia esto por el nombre de tu modelo Ollama local (ej. 'llama2', 'mistral', 'codellama')
+          parameters: {}
+    ols_config:
+      conversation_cache:
+        type: memory
+        memory:
+          max_entries: 1000
+      default_model: meta-llama/llama-3-8b-instruct
+      default_provider: IBMwatsonx
+      logging_config:
+        app_log_level: INFO
+        lib_log_level: INFO
+        uvicorn_log_level: INFO
+      reference_content:
+        embeddings_model_path: /opt/ols-embeddings/all-mpnet-base-v2
+        indexes:
+        - product_docs_index_id: ocp-product-docs-4_18
+          product_docs_index_path: /app-root/vector_db/ocp_product_docs/4.18
+      authentication_config:
+        module: "noop"
+      user_data_collection:
+        feedback_disabled: false
+        feedback_storage: /opt/ols-embeddings/feedback
+        transcripts_disabled: false
+        transcripts_storage: /opt/ols-embeddings/transcripts
+    user_data_collector_config:
+      data_storage: /opt/ols-embeddings
+      user_agent: OpenShiftLightspeed
+    dev_config:
+      #embed_model_path: "/opt/ols-embeddings/all-mpnet-base-v2"
+      enable_dev_ui: false
+      disable_auth: true
+      disable_tls: true
+      enable_system_prompt_override: true
+      # llm_params:
+      #   temperature_override: 0
+      # k8s_auth_token: optional_token_when_no_available_kube_config
