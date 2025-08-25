@@ -49,7 +49,7 @@ elasticsearch:
   namespace: elasticsearch-eck-operator-certified
   channel: stable
   startingCSV: elasticsearch-eck-operator-certified.v3.1.0
-  enabled: true
+  enabled: false
 rhdh:
   namespace: rhdh-operator
   channel: fast
