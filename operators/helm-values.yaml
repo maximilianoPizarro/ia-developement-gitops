@@ -1,5 +1,5 @@
-channel: stable-4.18
-version: 4.18.8
+channel: stable-4.17
+version: 4.17.37
 subscriptions:
   #- name: kiali-ossm
   #  namespace: openshift-operators
@@ -9,26 +9,34 @@ subscriptions:
   #  namespace: openshift-operators
   #  channel: stable
   #  source: redhat-operators
-  #- name: amq-streams
-  #  namespace: openshift-operators
-  #  channel: stable
-  #  source: redhat-operators
+  - name: amq-streams
+    namespace: openshift-operators
+    channel: stable
+    source: redhat-operators
+  - name: amq-streams-console
+    namespace: openshift-operators
+    channel: alpha
+    source: redhat-operators    
+  - name: elasticsearch-eck-operator-certified
+    namespace: openshift-operators
+    channel: stable
+    source: certified-operators
   - name: patch-operator
     namespace: patch-operator
     channel: alpha
     source: community-operators
-  - name: devspaces
-    namespace: openshift-operators
-    channel: stable
-    source: redhat-operators
-  - name: 3scale-operator
-    namespace: openshift-operators
-    channel: threescale-2.15
-    source: redhat-operators
-  - name: apicast-operator
-    namespace: openshift-operators
-    channel: threescale-2.15
-    source: redhat-operators
+  #- name: devspaces
+  #  namespace: openshift-operators
+  #  channel: stable
+  #  source: redhat-operators
+  #- name: 3scale-operator
+  #  namespace: openshift-operators
+  #  channel: threescale-2.15
+  #  source: redhat-operators
+  #- name: apicast-operator
+  #  namespace: openshift-operators
+  #  channel: threescale-2.15
+  #  source: redhat-operators
   #- name: serverless-operator
   #  namespace: openshift-serverless
   #  channel: stable
@@ -37,16 +45,16 @@ subscriptions:
   #  namespace: gitlab-system
   #  channel: stable
   #  source: certified-operators
-rhdh:
-  namespace: rhdh-operator
-  channel: fast
-  startingCSV: rhdh-operator.v1.7.0
+elasticsearch:
+  namespace: elasticsearch-eck-operator-certified
+  channel: stable
+  startingCSV: elasticsearch-eck-operator-certified.v3.1.0
   enabled: true
-rhbk:
-  namespace: rhbk-operator
-  channel: stable-v26.2
-  startingCSV: rhbk-operator.v26.2.7-opr.1
-  enabled: true
+#rhbk:
+#  namespace: rhbk-operator
+#  channel: stable-v26.2
+#  startingCSV: rhbk-operator.v26.2.7-opr.1
+#  enabled: true
 gitlab:
   namespace: gitlab-system
   channel: stable

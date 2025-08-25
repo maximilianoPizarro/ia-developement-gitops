@@ -70,7 +70,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         helm:
           valueFiles:
@@ -132,7 +132,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         helm:
           valueFiles:
@@ -233,7 +233,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         kustomize:
           namePrefix: '' 
@@ -313,7 +313,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         helm:
           valueFiles:
@@ -378,7 +378,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         helm:
           valueFiles:
@@ -439,7 +439,7 @@ spec:
       project: default
       source:
         repoURL: 'https://github.com/maximilianoPizarro/ia-developement-gitops.git'
-        targetRevision: main
+        targetRevision: ocp-4.17.37
         path: '{{path}}'
         helm:
           valueFiles:
