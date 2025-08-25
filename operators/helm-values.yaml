@@ -50,11 +50,16 @@ elasticsearch:
   channel: stable
   startingCSV: elasticsearch-eck-operator-certified.v3.1.0
   enabled: true
-#rhbk:
-#  namespace: rhbk-operator
-#  channel: stable-v26.2
-#  startingCSV: rhbk-operator.v26.2.7-opr.1
-#  enabled: true
+rhdh:
+  namespace: rhdh-operator
+  channel: fast
+  startingCSV: rhdh-operator.v1.7.0
+  enabled: false
+rhbk:
+  namespace: rhbk-operator
+  channel: stable-v26.2
+  startingCSV: rhbk-operator.v26.2.7-opr.1
+  enabled: false
 gitlab:
   namespace: gitlab-system
   channel: stable
