@@ -2,12 +2,16 @@
 <link rel="icon" href="https://raw.githubusercontent.com/maximilianoPizarro/botpress-helm-chart/main/favicon-152.ico" type="image/x-icon" >
 <p align="left">
 <img src="https://img.shields.io/badge/redhat-CC0000?style=for-the-badge&logo=redhat&logoColor=white" alt="Redhat">
-<img src="https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white" alt="kubernetes">
+<img src="https://img.shields.io/badge/openshift-%23121011.svg?style=for-the-badge&logo=redhat&logoColor=dark" alt="OpenSHift">
+<img src="https://img.shields.io/badge/argocd-0077B5?style=for-the-badge&logo=argo" alt="kubernetes">
 <img src="https://img.shields.io/badge/helm-0db7ed?style=for-the-badge&logo=helm&logoColor=white" alt="Helm">
+<a href="https://github.com/maximilianoPizarro/ia-developement-gitops"><img src="https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=linkedin&logoColor=black" alt="github" /></a>
+<a href="https://www.linkedin.com/in/maximiliano-gregorio-pizarro-consultor-it"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" /></a>
+</p>
+<p align="left">
 <a href="https://artifacthub.io/packages/search?org=community-charts"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/n8n" alt="n8n" /></a>
 <a href="https://artifacthub.io/packages/search?repo=librechat-openshift"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/librechat" alt="Artifact Hub" /></a>
 <a href="https://artifacthub.io/packages/search?repo=botpress"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/botpress" alt="Artifact Hub" /></a>
-<a href="https://www.linkedin.com/in/maximiliano-gregorio-pizarro-consultor-it"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" /></a>
 </p>
 
 <div align="center">
@@ -187,7 +191,7 @@ data:
 ```
 
 <div align="left">
-  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/operators.png" width="900"/>
+  <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/secret.png" width="900"/>
 </div>
 
 **Important:**  
@@ -251,12 +255,17 @@ spec:
 ```
 ### Red Hat Build of Keycloak 26.0
 
+Red Hat Build of Keycloak 26.0 is an open-source identity and access management (IAM) software. It's designed to centrally secure applications and services. Its main features include single sign-on (SSO), role-based access control (RBAC), and support for standard protocols like OpenID Connect and OAuth 2.0. It simplifies user management and API protection, allowing developers to implement security with minimal effort.
+
+
 <div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk.png" width="900"/>
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/rhbk-2.png" width="900"/>
 </div>
 
 ### Red Hat Developer Hub 1.7
+
+Red Hat Developer Hub 1.7 is a developer portal platform based on Backstage. Its goal is to streamline and standardize the software development lifecycle. It provides a component catalog, software templates, and centralized documentation. It helps teams discover, use, and manage their tools and services, improving collaboration and productivity. It's perfect for organizations seeking full visibility into their microservices and APIs.
 
 <div align="left">
   <img src="https://github.com/maximilianoPizarro/ia-developement-gitops/raw/main/snapshot/developer-hub.png" width="900"/>
