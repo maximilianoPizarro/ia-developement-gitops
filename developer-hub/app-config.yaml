@@ -77,7 +77,7 @@ data:
       servers:
         - id: ollama
           url: "http://librechat-ollama.librechat.svc.cluster.local:11434/v1" # Change this to your Ollama URL if it's different
-          type: "openai" # Ollama uses an OpenAI-compatible API
+          token: "EMPTY"
     permission:
       enabled: true
       rbac:
