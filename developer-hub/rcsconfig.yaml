@@ -10,37 +10,42 @@ metadata:
 data:
   rcsconfig.yaml: |
     llm_providers:
-      - name: ollama
+      # Start: Do not remove this block
+      - name: dummy
         type: openai
-        url: http://librechat-ollama.librechat.svc.cluster.local:11434/v1
+        url: https://dummy.com
         models:
-        - name: llama2
-          parameters: {}
+          - name: dummymodel
+        # End: Do not remove this block
     ols_config:
+      user_data_collection:
+        log_level: "DEBUG"
+        feedback_disabled: false
+        feedback_storage: "/tmp/feedback"
+      reference_content:
+        product_docs_index_path: "./vector_db/rhdh_product_docs/1.7"
+        product_docs_index_id: rhdh-product-docs-1_7
+        embeddings_model_path: "./embeddings_model"
       conversation_cache:
         type: memory
         memory:
           max_entries: 1000
-      default_model: llama2
-      default_provider: ollama
       logging_config:
-        app_log_level: INFO
-        lib_log_level: INFO
-        uvicorn_log_level: INFO
-      reference_content:
-        embeddings_model_path: /opt/ols-embeddings/all-mpnet-base-v2
-        indexes:
-        - product_docs_index_id: ocp-product-docs-4_18
-          product_docs_index_path: /app-root/vector_db/ocp_product_docs/4.18
+        app_log_level: info
+        lib_log_level: warning
+        uvicorn_log_level: info
+        suppress_metrics_in_log: false
+        suppress_auth_checks_warning_in_log: false
       authentication_config:
         module: "noop"
-      user_data_collection:
-        feedback_disabled: false
-        feedback_storage: /opt/ols-embeddings/feedback
-        transcripts_disabled: false
-        transcripts_storage: /opt/ols-embeddings/transcripts
-    user_data_collector_config:
-      data_storage: /opt/ols-embeddings
-      user_agent: OpenShiftLightspeed
+      default_provider: dummy
+      default_model: dummymodel
+      query_validation_method: disabled
     dev_config:
+      enable_dev_ui: false
+      disable_auth: false
       disable_tls: true
+      enable_system_prompt_override: true
+    user_data_collector_config:
+      user_agent: "example-user-agent"
+      ingress_url: "https://example.ingress.com/upload"
