@@ -17,6 +17,11 @@ data:
         models:
           - name: dummymodel
         # End: Do not remove this block
+      - name: mistral-small
+        type: mistral
+        url: https://mistral-small-24b-w8a8-maas-apicast-production.apps.prod.rhoai.rh-aiservices-bu.com:443/v1
+        models:
+          - name: mistral-small-24b-w8a8        
     ols_config:
       user_data_collection:
         log_level: "DEBUG"
