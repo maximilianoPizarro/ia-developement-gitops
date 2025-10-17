@@ -77,7 +77,10 @@ data:
       servers:
         - id: ollama
           url: "http://librechat-ollama.librechat.svc.cluster.local:11434/v1" # Change this to your Ollama URL if it's different
-          token: "EMPTY"
+          token: "EMPTY"      
+        - id: "${LLM_SERVER_ID}"
+          url: "${LLM_SERVER_URL}"
+          token: "${LLM_SERVER_TOKEN}"
     permission:
       enabled: true
       rbac:
