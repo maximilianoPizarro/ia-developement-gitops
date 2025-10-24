@@ -72,7 +72,7 @@ data:
         - type: url
           target: https://github.com/redhat-ai-dev/ai-lab-template/blob/main/all.yaml
           rules:
-            - allow: [Location, Template]
+            - allow: [Component, API, Group, System]
     lightspeed:
       servers:
         #- id: ollama
