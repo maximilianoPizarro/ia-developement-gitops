@@ -48,11 +48,7 @@ data:
           - "'self'"
           - "data:"
           - https://img.freepik.com
-          - https://cdn.dribbble.com
-      reading:
-        - allow:
-            - https://github.com
-            - https://raw.githubusercontent.com          
+          - https://cdn.dribbble.com     
     signInPage: oidc
     catalog:
       providers:
