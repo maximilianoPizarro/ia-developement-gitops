@@ -14,7 +14,7 @@ data:
     integrations:
       github:
         - host: github.com
-          token: CHANGEME
+          token: ${GITHUB_INTEGRATION}
     auth:
       environment: production
       session:
