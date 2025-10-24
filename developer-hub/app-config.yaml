@@ -50,9 +50,9 @@ data:
           - https://img.freepik.com
           - https://cdn.dribbble.com
       reading:
-        allow:
-          - https://github.com
-          - https://raw.githubusercontent.com          
+        - allow:
+            - https://github.com
+            - https://raw.githubusercontent.com          
     signInPage: oidc
     catalog:
       providers:
