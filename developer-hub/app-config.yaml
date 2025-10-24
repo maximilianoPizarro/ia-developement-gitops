@@ -40,6 +40,10 @@ data:
         keys:
           - secret: "${BACKEND_SECRET}"
       baseUrl: "${RHDH_BASE_URL}"
+      reading:
+        allow:
+          - https://github.com
+          - https://raw.githubusercontent.com
       cors:
         origin: "${RHDH_BASE_URL}"
       csp:
