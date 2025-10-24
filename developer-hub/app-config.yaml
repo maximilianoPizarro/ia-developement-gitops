@@ -40,7 +40,7 @@ data:
         keys:
           - secret: "${BACKEND_SECRET}"
       baseUrl: "${RHDH_BASE_URL}"
-      reading:
+      reading:
         allow:
           - https://github.com
           - https://raw.githubusercontent.com
